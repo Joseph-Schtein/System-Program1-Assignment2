@@ -3,8 +3,9 @@
 
 
 int main(){
+	
 	char select;
-	int bankAccount;
+	int ch, bankAccount;
 	double amount, intrestRate;
 
 	
@@ -23,13 +24,15 @@ int main(){
 		printf("Please enter E to end the program\n\n");
 		printf("Please enter a letter\n");		
 		
-		scanf("  %c", &select);
-
+		scanf("  %c", &select);				
+		while( (ch = getchar()) != '\n' && ch != EOF);
 		switch(select){
 
 			case 'O':		
-				printf("What would be your initiat depositsir:\n");
+				printf("What would be your initiat depositsir:\n");			
 				scanf("%lf", &amount);			
+				amount = (amount*100)/100.0;								
+
 				if(amount>=0){			
 					open(amount);
 				}
@@ -43,7 +46,8 @@ int main(){
 			case 'B':
 				printf("What is your bank account:\n");			
 				scanf("%d", &bankAccount);
-				
+							
+
 				if(bankAccount<901 || bankAccount>950){
 					printf("The number you enter is not valid\n");
 					printf("Please choose a new action\n");
@@ -55,8 +59,8 @@ int main(){
 				break;
 
 			case 'D':
-				printf("What is your bank account\n");
-				scanf("%d", &bankAccount);
+				printf("Please enter your bank account and amount of NIS you want to deposit\n");
+				scanf("%d%lf", &bankAccount,&amount);		
 				
 				if(bankAccount<901 || bankAccount>950){
 					printf("The number you enter is not valid\n");
@@ -65,8 +69,7 @@ int main(){
 			
 				else{
 					printf("Please enter a number of NIS for deposit:\n");			
-					scanf("%lf", &amount);
-					
+					amount = (amount*100)/100.0;
 					if(amount>=0){	
 						depositing(bankAccount ,amount);
 					}
@@ -80,9 +83,10 @@ int main(){
 		
 
 			case 'W':
-				printf("What is your bank account\n");
-				scanf("%d", &bankAccount);
-	
+				printf("Please enter your bank account and amount of NIS you want to withdrawl\n");
+				scanf("%d%lf", &bankAccount,&amount);
+
+
 				if(bankAccount<901 || bankAccount>950){
 					printf("The number you enter is not valid\n");
 					printf("Please choose a new action\n");
@@ -90,7 +94,7 @@ int main(){
 			
 				else{
 					printf("Please enter a number of NIS for withdraw:\n");
-					scanf("%lf", &amount);
+					amount = (amount*100)/100.0;
 					if(amount>=0){	
 						withdrawal(bankAccount ,amount);
 					}
