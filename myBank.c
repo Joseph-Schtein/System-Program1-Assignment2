@@ -195,28 +195,18 @@ void close(){
 
 
 void intrest(){
-	double interest_Rate, interest_Prcentage; 
-	printf("Please choose the intrst by precentage");			
-	if(scanf("%lf", &interest_Rate)==1){// Enter a number that bigger than 100 for make the amount of money bigger else it is negative intrest
-		if(interest_Rate>100){		
-			interest_Prcentage = interest_Rate/100.0;
+	int interest_Rate; 
+	printf("Please choose the intrst by precentage integer\n");			
+	if(scanf("%d", &interest_Rate)==1){		
+		if(interest_Rate>0){		
 			for(int i = 0; i < NUMBER_OF_BANK_ACCOUNT; i++){
 				if(bankAccount[0][i]==OPEN){
-					bankAccount[1][i]= bankAccount[1][i]+bankAccount[1][i]*interest_Prcentage;
+					bankAccount[1][i]+= bankAccount[1][i]*interest_Rate/100.0;
 					bankAccount[1][i]= (bankAccount[1][i]*100)/100.0;
 				}
 			}
 		}
 	
-		else if(interest_Rate<100 && interest_Rate>0){
-			interest_Prcentage = interest_Rate/100.0;
-			for(int i = 0; i < NUMBER_OF_BANK_ACCOUNT; i++){
-				if(bankAccount[0][i]==OPEN){
-					bankAccount[1][i]= bankAccount[1][i]*interest_Prcentage;
-					bankAccount[1][i]= (bankAccount[1][i]*100)/100.0;
-				}
-			}
-		}
 
 		else{
 			printf("You can't give a negative intrest\n");
@@ -224,7 +214,7 @@ void intrest(){
 	}
 
 	else{
-		printf("you need to give a double number for intrest\n\n");
+		printf("you need to give a number for intrest\n\n");
 	}
 }
 
