@@ -1,13 +1,7 @@
 #include "myBank.h"
 #include <stdio.h>	
 
-#define OPEN 1
-#define CLOSE 0
-#define NUMBER_OF_ROWS 2
-#define NUMBER_OF_BANK_ACCOUNT 50 
-
 double bankAccount[NUMBER_OF_ROWS][NUMBER_OF_BANK_ACCOUNT]={0};
-
 
 void open(){
 	int notFound =1;	
@@ -36,10 +30,13 @@ void open(){
 		else{
 			printf("The amount you enter is negative\n");
 			printf("Please choose a new action\n");
-		}		
+		}
+
 	}
-	
-	printf("You enter non valid input\n");  
+
+	else{	
+	printf("You enter non valid input\n"); 		
+	} 
 }
 
 
@@ -133,9 +130,13 @@ void withdrawal(){
 			if(scanf("%lf", &amount)==1){
 				amount = (amount*100)/100.0;
 			
-				if(bankAccount[0][account_Number-901]==OPEN && bankAccount[1][account_Number-901]>amount){
+				if(bankAccount[0][account_Number-901]==OPEN && bankAccount[1][account_Number-901]>amount && amount>0){
 					bankAccount[1][account_Number-901]= bankAccount[1][account_Number-901]-amount;
 					printf("Your new balance is: %0.2lf\n\n", bankAccount[1][account_Number-901]);
+				}
+				
+				else if(amount <=0){
+					printf("You can't draw a non positve number of NIS\n\n");
 				}
 
 				else if(bankAccount[0][account_Number-901]==OPEN && bankAccount[1][account_Number-901]<amount){
